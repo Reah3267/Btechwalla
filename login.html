@@ -13,18 +13,50 @@
         <div class="avatar">
             <img src="assets/img/home.png" alt="Home Icon">
         </div>
-        <form action="your_login_processing_script.php" method="post">
-            <input type="text" name="username" placeholder="Username" required>
+        <form id="login-form">
+            <input type="text" id="username" name="username" placeholder="Username" required>
             <div class="bar">
                 <i></i>
             </div>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
             <a href="#" class="forgot_link">Forgot?</a>
             <button type="submit">Sign in</button>
             <p>New here? <a href="signup.html">Register here</a></p>
         </form>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginForm = document.getElementById('login-form');
+
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Send a POST request to your server for authentication
+                try {
+                    const response = await fetch('your_login_processing_script.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: `username=${username}&password=${password}`,
+                    });
+
+                    if (response.ok) {
+                        // Login successful, you can redirect or handle success here
+                        alert('Login successful.');
+                    } else {
+                        // Handle login error, you can display an error message here
+                        alert('Login failed. Please check your credentials.');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
