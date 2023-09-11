@@ -1,19 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
     <link rel="stylesheet" href="assets/css/styles1.css">
 </head>
-
 <body>
     <div class="wrap">
         <div class="avatar">
             <img src="assets/img/home.png" alt="Home Icon">
         </div>
-        <form id="login-form">
+        <form id="login-form" action="login.php" method="POST">
             <input type="text" id="username" name="username" placeholder="Username" required>
             <div class="bar">
                 <i></i>
@@ -36,7 +34,7 @@
 
                 // Send a POST request to your server for authentication
                 try {
-                    const response = await fetch('your_login_processing_script.php', {
+                    const response = await fetch('login.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded',
@@ -58,5 +56,4 @@
         });
     </script>
 </body>
-
 </html>
